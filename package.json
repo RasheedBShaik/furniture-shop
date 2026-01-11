@@ -8,7 +8,6 @@
     "server": "nodemon backend/server.js",
     "client": "pnpm --prefix frontend dev",
     "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"yellow,blue\" \"pnpm run server\" \"pnpm run client\""
-
   },
   "keywords": [],
   "author": "",
@@ -18,7 +17,9 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "mongoose": "^9.1.2"
+    "lucide-react": "^0.562.0",
+    "mongoose": "^9.1.2",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",

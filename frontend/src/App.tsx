@@ -8,17 +8,18 @@ import Account from "./pages/Account";
 import Search from "./pages/Search";
 import Liked from "./pages/Liked";
 import Cart from "./pages/Cart";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-white">
-        {/* <main className="mx-auto max-w-full border-2 max-w-46.25>" */}
-          <main className="max-w-7xl mx-auto px-4 md:px-8">
-
+      <div className="min-h-screen bg-white italic">
+          <main className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+            <ScrollToTop/>
         {/* Header is outside Routes so it stays at the top of every page */}
-        <Header />
 
+        < Header />
         {/* Routes acts like a switch: it only renders ONE route at a time */}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -30,7 +31,8 @@ function App() {
           <Route path="/liked" element={<Liked/>}/>
           <Route path="/cart" element={<Cart/>} />
         </Routes>
-
+        {/* bottom is outside Routes so it stays at the bottom of every page */}
+        <Footer/>
         </main>
       </div>
     </BrowserRouter>
