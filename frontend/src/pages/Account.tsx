@@ -19,10 +19,12 @@ const Account = () => {
 
   // --- Form State ---
   const [formData, setFormData] = useState<IProduct>({
+    id: "",
     _id: "",
     name: "",
     price: 0,
     originalPrice: 0,
+    stock: 0,
     image: "",
     description: "",
     category: "",
@@ -62,7 +64,11 @@ const Account = () => {
       if (data.success) {
         fetchProducts();
         resetForm();
-        alert(editingId ? "Product updated successfully!" : "Product added successfully!");
+        alert(
+          editingId
+            ? "Product updated successfully!"
+            : "Product added successfully!"
+        );
       }
     } catch (err) {
       console.error("Error saving product:", err);
@@ -81,10 +87,12 @@ const Account = () => {
 
   const resetForm = () => {
     setFormData({
+      id: "",
       _id: "",
       name: "",
       price: 0,
       originalPrice: 0,
+      stock: 0,
       image: "",
       description: "",
       category: "",
@@ -94,20 +102,23 @@ const Account = () => {
   };
 
   // --- Filter Logic ---
-  // This logic solves the "Living Room" vs "Living" issue
-  const filteredProducts = adminFilter === "All"
-    ? products
-    : products.filter((p) => {
-        const productCat = p.category?.toLowerCase() || "";
-        const filterCat = adminFilter.toLowerCase();
-        return productCat.includes(filterCat);
-      });
+  
+  const filteredProducts =
+    adminFilter === "All"
+      ? products
+      : products.filter((p) => {
+          const productCat = p.category?.toLowerCase() || "";
+          const filterCat = adminFilter.toLowerCase();
+          return productCat.includes(filterCat);
+        });
 
   // --- ADMIN DASHBOARD VIEW ---
   if (isLoggedIn) {
     return (
       <div className="max-w-7xl mx-auto my-8 p-6 min-h-screen">
-        <h1 className="text-3xl font-bold mb-5 text-center text-gray-800">Inventory Manager</h1>
+        <h1 className="text-3xl font-bold mb-5 text-center text-gray-800">
+          Inventory Manager
+        </h1>
 
         {/* --- FORM SECTION --- */}
         <form
@@ -116,7 +127,7 @@ const Account = () => {
         >
           <input
             className="border p-3 rounded-md focus:outline-[#B88E2F]"
-            placeholder="Product Name"
+            placeholder="Product Name !"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
@@ -125,20 +136,39 @@ const Account = () => {
           <select
             className="border text-[#777777] border-black p-3 rounded-md focus:outline-[#B88E2F]"
             value={formData.category}
-            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
             required
           >
-            <option value="">Select Category</option>
-            {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+            <option disabled value="">
+              Select Category !
+            </option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
           </select>
 
           <input
             className="border p-3 rounded-md focus:outline-[#B88E2F]"
             type="number"
-            placeholder="Price"
+            placeholder="Price !"
             value={formData.price || ""}
-            onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
+            onChange={(e) =>
+              setFormData({ ...formData, price: Number(e.target.value) })
+            }
             required
+          />
+
+          <input
+            className="border p-3 rounded-md focus:outline-[#B88E2F]"
+            placeholder="Label (e.g. 30%)"
+            value={formData.label}
+            onChange={(e) =>
+              setFormData({ ...formData, label: e.target.value })
+            }
           />
 
           <input
@@ -146,37 +176,39 @@ const Account = () => {
             type="number"
             placeholder="Original Price"
             value={formData.originalPrice || ""}
-            onChange={(e) => setFormData({ ...formData, originalPrice: Number(e.target.value) })}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                originalPrice: Number(e.target.value),
+              })
+            }
           />
 
           <input
-            className="border p-3 rounded-md focus:outline-[#B88E2F]"
-            placeholder="Label (e.g. 30%)"
-            value={formData.label}
-            onChange={(e) => setFormData({ ...formData, label: e.target.value })}
-          />
-
-          <input
-            className="border p-3 rounded-md focus:outline-[#B88E2F]"
-            placeholder="Image URL"
+            className="border p-3 rounded-md md:col-span-3 focus:outline-[#B88E2F]"
+            placeholder="Image URL !"
             value={formData.image}
-            onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, image: e.target.value })
+            }
             required
           />
 
           <textarea
             className="border p-3 rounded-md md:col-span-3 focus:outline-[#B88E2F]"
-            placeholder="Description"
+            placeholder="Description !"
             rows={3}
             value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
             required
           />
 
           <div className="md:col-span-3 flex gap-3 mt-2">
             <button
               type="submit"
-              className="flex-1 bg-[#B88E2F] text-white py-3 rounded-md font-bold hover:bg-[#a47e2a] transition-all shadow-md"
+              className="flex-1 bg-[#B88E2F] text-white cursor-pointer py-3 rounded-md font-bold hover:bg-[#a47e2a] transition-all shadow-md"
             >
               {editingId ? "Update Product" : "Add New Product"}
             </button>
@@ -195,7 +227,9 @@ const Account = () => {
         {/* --- FILTER BAR --- */}
         <div className="flex flex-wrap items-center justify-between bg-[#F9F1E7] p-6 mb-10 rounded-sm">
           <div className="flex flex-wrap gap-6 items-center">
-            <span className="font-semibold text-[#242424]">Filter by Category:</span>
+            <span className="font-semibold text-[#242424]">
+              Filter by Category:
+            </span>
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => setAdminFilter("All")}
@@ -229,7 +263,9 @@ const Account = () => {
 
         {/* --- LIST SECTION --- */}
         {loading ? (
-          <div className="flex justify-center py-10 text-[#B88E2F] font-bold">Loading Inventory...</div>
+          <div className="flex justify-center py-10 text-[#B88E2F] font-bold">
+            Loading Inventory...
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {filteredProducts.map((product) => (
@@ -259,7 +295,9 @@ const Account = () => {
         )}
 
         {filteredProducts.length === 0 && !loading && (
-          <div className="text-center py-20 text-gray-400">No products found.</div>
+          <div className="text-center py-20 text-gray-400">
+            No products found.
+          </div>
         )}
       </div>
     );
@@ -269,12 +307,19 @@ const Account = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
       <div className="p-10 bg-white border border-[#B88E2F]/20 rounded-2xl shadow-2xl w-full max-w-md">
-        <h2 className="text-3xl font-bold mb-8 text-center text-[#B88E2F]">Admin Login</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-[#B88E2F]">
+          Admin Login
+        </h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (username === "admin" && password === "password") setIsLoggedIn(true);
-            else alert("Access Denied");
+            // Convert both inputs to lowercase to handle all case variations
+            if (
+              username.toLowerCase() === "admin" &&
+              password.toLowerCase() === "password"
+            ) {
+              setIsLoggedIn(true);
+            } else alert("Access Denied");
           }}
           className="flex flex-col gap-5"
         >

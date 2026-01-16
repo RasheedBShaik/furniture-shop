@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 5000;
 
 // 2. Enable CORS
 app.use(cors({
-    origin: "http://localhost:5173", // Allow your React/Vite dev server
+    origin: "http://localhost:5173"||"https://1s8dbpgj-5173.inc1.devtunnels.ms", 
+    // Allow your React/Vite dev server
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));

@@ -8,7 +8,7 @@ const Shop = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // 1. URL search params to read ?category=Livingroom
+  // 1. URL search params to read ?category=Living
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("category");
 
@@ -112,7 +112,7 @@ const Shop = () => {
             </div>
           ) : (
             <div className="text-center py-32 bg-gray-50 rounded-lg">
-              <h3 className="text-2xl text-gray-400 mb-4">No products found in "{activeCategory}"</h3>
+              <h3 className="text-2xl text-gray-400 mb-4">No products found in `{activeCategory ||  "Store"}`</h3>
               <button 
                 onClick={() => setSearchParams({})} 
                 className="bg-[#B88E2F] text-white px-8 py-3 rounded-sm hover:bg-[#967328] transition-colors"

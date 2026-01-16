@@ -89,7 +89,7 @@ const features = [
 
 const Banner = () => {
   return (
-    <div className="flex flex-wrap md:flex-row justify-between my-10 py-16 px-8 bg-[#FAF3EA] gap-8">
+    <div className="flex flex-wrap md:flex-row justify-between my-10 py-16 px-8 bg-[#FAF3EA] gap-6">
       {features.map((item, index) => (
         <div key={index} className="flex items-center gap-3 flex-1 min-w-62.5">
           {/* flex-1 makes each item grow equally */}

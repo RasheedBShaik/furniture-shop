@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
 export interface IProduct {
+  id: any;
   _id: string;
   label?: string;
   image: string;
@@ -10,6 +11,7 @@ export interface IProduct {
   description: string;
   price: number;
   originalPrice?: number;
+  stock:number;
   category: string;
 }
 
@@ -75,7 +77,7 @@ const Home = () => {
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Browse The Range</h2>
         <p className="text-[#666666]">Select a category to see our specific collections.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-          {/* IMPORTANT: "Livingroom" here matches your Shop filter and Backend Regex */}
+          
           {['Dining', 'Living', 'Bedroom'].map((cat) => (
             <Link 
               key={cat} 
