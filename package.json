@@ -4,11 +4,14 @@
   "description": "Full-stack project with pnpm monorepo setup",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "server": "nodemon backend/server.js",
-    "client": "pnpm --prefix frontend dev",
-    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"yellow,blue\" \"pnpm run server\" \"pnpm run client\""
-  },
+ "scripts": {
+  "build": "pnpm --prefix frontend build",
+  "start": "node backend/server.js",
+  "server": "nodemon backend/server.js",
+  "client": "pnpm --prefix frontend dev",
+  "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"yellow,blue\" \"pnpm run server\" \"pnpm run client\""
+},
+
   "keywords": [],
   "author": "",
   "license": "ISC",
