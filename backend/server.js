@@ -9,13 +9,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 1. Define multiple allowed origins in an array
+// 1. Define origins
 const allowedOrigins = [
     "https://furniro-furniture-shop.vercel.app",
     "http://localhost:5173",
-    "http://127.0.0.1:5173" // Some browsers resolve localhost to this IP
+    "http://127.0.0.1:5173"
 ];
 
+// 2. ACTIVATE CORS (This was missing)
 app.use(cors({
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps or curl)
@@ -24,19 +25,15 @@ app.use(cors({
         if (allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
-            console.log("CORS blocked for origin:", origin);
             callback(new Error('Not allowed by CORS'));
         }
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 
 app.use(express.json());
 
-// Health check route to verify server is alive
-app.get("/", (req, res) => res.send("Server is running"));
-
+// Routes
 app.use("/api/products", productRoutes);
 
 const startServer = async () => {

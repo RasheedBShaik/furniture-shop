@@ -32,21 +32,36 @@ const Home = () => {
     return () => window.removeEventListener("resize", updateLimit);
   }, []);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        if (data.success) setProducts(data.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
+useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
 
+      // 1. Point to Render (The actual data source)
+      // Do not use a relative path like "/api/products"
+      const API_URL = "https://furniture-shop-xsj0.onrender.com/api/products";
+
+      const res = await fetch(API_URL);
+
+      // 2. Error handling for the "NOT_FOUND" issue
+      if (!res.ok) {
+        throw new Error(`Server Error: ${res.status}. Check if backend is awake.`);
+      }
+
+      const data = await res.json();
+      
+      // 3. Set your data
+      if (data.success) {
+        setProducts(data.data);
+      }
+    } catch (error) {
+      console.error("Connection Failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchProducts();
+}, []);
   return (
     <div className="max-w-7xl mx-auto px-4 min-h-screen flex flex-col mb-20">
       {/* Hero Section */}
