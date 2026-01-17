@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react'; // npm install lucide-react
+import { Menu, X } from 'lucide-react'; 
 import Navbar from './Navbar';
-import { useCart } from './Context'; // Assuming Context.tsx is in the same folder
+import { useCart } from './Context';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
