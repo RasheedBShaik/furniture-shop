@@ -102,7 +102,7 @@ const Account = () => {
   };
 
   // --- Filter Logic ---
-  
+
   const filteredProducts =
     adminFilter === "All"
       ? products
@@ -183,6 +183,16 @@ const Account = () => {
               })
             }
           />
+          <input
+  type="number"
+  min="0"
+  className="border p-3 rounded-md focus:outline-[#B88E2F]"
+  placeholder="Number of products (e.g. 30)"
+  value={formData.stock}
+  onChange={(e) =>
+    setFormData({ ...formData, stock: Number(e.target.value) })
+  }
+/>
 
           <input
             className="border p-3 rounded-md md:col-span-3 focus:outline-[#B88E2F]"
