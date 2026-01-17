@@ -4,14 +4,6 @@ import { ChevronRight, Star, Loader2, Heart } from "lucide-react";
 import type { IProduct } from "../pages/Home";
 import { useCart } from "./Context";
 
-// Dynamically detect backend URL based on environment
-const getApiBase = () => {
-  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-    return "http://localhost:5000"; // your local backend
-  }
-  return "https://furniture-shop-xsj0.onrender.com"; // deployed backend
-};
-
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
   const { addToCart, toggleLike, likedItems } = useCart();
@@ -34,11 +26,11 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const API_BASE = getApiBase();
-        const url = `${API_BASE}/api/products/${id}`;
-        console.log("Fetching product from:", url);
+        const API_URL = `https://furniture-shop-xsj0.onrender.com/api/products/${id}`;
 
-        const response = await fetch(url);
+      const response = await fetch(API_URL);
+
+        // const response = await fetch(url);
 
         if (!response.ok) {
           // Try to parse JSON, fallback to text
@@ -65,6 +57,7 @@ const ProductPage = () => {
     };
 
     fetchProduct();
+
 
     return () => {
       isMounted = false;
@@ -105,7 +98,7 @@ const ProductPage = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Product Image */}
-        <div className="bg-[#F9F1E7] rounded-lg overflow-hidden h-[400px] md:h-[600px]">
+        <div className="bg-[#F9F1E7] rounded-lg overflow-hidden h-100 md:h-150">
           <img
             src={product.image}
             alt={product.name}
