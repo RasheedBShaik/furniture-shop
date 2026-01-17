@@ -25,7 +25,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const [likedItems, setLikedItems] = useState<IProduct[]>(() => {
-    const saved = localStorage.getItem("wishlist");
+    const saved = localStorage.getItem("liked");
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -35,7 +35,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }, [cartItems]);
 
   useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(likedItems));
+    localStorage.setItem("Like", JSON.stringify(likedItems));
   }, [likedItems]);
 
   const addToCart = (product: IProduct) => {

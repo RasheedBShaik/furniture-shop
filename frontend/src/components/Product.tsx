@@ -98,7 +98,7 @@ const ProductPage = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Product Image */}
-        <div className="bg-[#F9F1E7] rounded-lg overflow-hidden h-100 md:h-150">
+        <div className="bg-[#F9F1E7] rounded-lg overflow-hidden h-[400px] md:h-[600px]">
           <img
             src={product.image}
             alt={product.name}
@@ -152,7 +152,7 @@ const ProductPage = () => {
               className="border border-black rounded-xl px-8 py-4 hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2 group"
             >
               <Heart size={20} className={isLiked ? "fill-red-500 text-red-500" : "group-hover:text-white"} />
-              <span className="font-medium">{isLiked ? "Liked" : "Wishlist"}</span>
+              <span className="font-medium">{isLiked ? "Liked" : "like"}</span>
             </button>
           </div>
         </div>
