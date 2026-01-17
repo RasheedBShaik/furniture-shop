@@ -12,7 +12,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // Using the IPv4 address directly prevents ECONNREFUSED in Node.js 17+
-        target: 'http://127.0.0.1:5000',
+        target: 'https://furniture-shop-xsj0.onrender.com/',
         changeOrigin: true,
         secure: false,
       },

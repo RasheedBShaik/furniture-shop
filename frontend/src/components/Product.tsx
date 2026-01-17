@@ -20,7 +20,7 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:5000/api/products/${id}`);
+        const response = await fetch(`https://furniture-shop-xsj0.onrender.com/api/products/${id}`);
         if (!response.ok) throw new Error("Failed to fetch product data");
         const json = await response.json();
 
