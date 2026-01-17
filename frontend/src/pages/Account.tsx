@@ -35,7 +35,7 @@ const Account = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/products");
+      const res = await fetch("https://furniture-shop-xsj0.onrender.com/api/products");
       const data = await res.json();
       if (data.success) setProducts(data.data);
     } catch (err) {
@@ -52,7 +52,7 @@ const Account = () => {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     const method = editingId ? "PUT" : "POST";
-    const url = editingId ? `/api/products/${editingId}` : "/api/products";
+    const url = editingId ? `https://furniture-shop-xsj0.onrender.com/api/products/${editingId}` : "https://furniture-shop-xsj0.onrender.com/api/products";
 
     try {
       const res = await fetch(url, {
@@ -78,7 +78,7 @@ const Account = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm("Delete this product?")) return;
     try {
-      const res = await fetch(`/api/products/${id}`, { method: "DELETE" });
+      const res = await fetch(`https://furniture-shop-xsj0.onrender.com/api/products/${id}`, { method: "DELETE" });
       if (res.ok) setProducts(products.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Error deleting product:", err);

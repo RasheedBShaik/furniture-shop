@@ -21,8 +21,8 @@ const Shop = () => {
       try {
         // 2. Fetch based on category if it exists
         const url = activeCategory 
-          ? `/api/products?category=${activeCategory}` 
-          : "/api/products";
+          ? `https://furniture-shop-xsj0.onrender.com/api/products?category=${activeCategory}` 
+          : "https://furniture-shop-xsj0.onrender.com/api/products";
           
         const res = await fetch(url);
         const data = await res.json();

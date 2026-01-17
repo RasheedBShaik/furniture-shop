@@ -98,7 +98,7 @@ const ProductPage = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Product Image */}
-        <div className="bg-[#F9F1E7] rounded-lg overflow-hidden h-[400px] md:h-[600px]">
+        <div className="bg-[#F9F1E7] rounded-lg overflow-hidden h-100 md:h-150">
           <img
             src={product.image}
             alt={product.name}
