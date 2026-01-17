@@ -13,7 +13,7 @@ const allowedOrigin = "https://furniro-furniture-shop.vercel.app" || "http://loc
 app.use(cors({
     origin: allowedOrigin,
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
+    // credentials: true
 }));
 
 app.use(express.json());
