@@ -9,8 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const allowedOrigin = process.env.CLIENT_URL || "*";
-
+const allowedOrigin = "https://furniro-furniture-shop.vercel.app" || "http://localhost:5173";
 app.use(cors({
     origin: allowedOrigin,
     methods: ["GET", "POST", "PUT", "DELETE"],
