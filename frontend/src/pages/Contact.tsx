@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div className="max-w-7xl mx-auto my-6 ">
       {/* Banner / Header */}
-      <div className="bg-[url(images/shop-hero.png)] bg-cover bg-center flex items-center justify-center flex-col h-80 py-12 mb-10 text-center rounded-sm">
+      <div className="bg-[url(/images/shop-hero.png)] bg-cover bg-center flex items-center justify-center flex-col h-80 py-12 mb-10 text-center rounded-sm">
         <img src="/icons/logo.png" alt="Logo" className="mb-2" />
         <h1 className="text-4xl font-bold text-gray-800 not-italic">Contact</h1>
         <p className=" mt-2 not-italic">
@@ -130,3 +130,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
